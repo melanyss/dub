@@ -10,6 +10,9 @@ export const addDomainToVercel = async (
     redirectToApex?: boolean;
   } = {},
 ): Promise<CustomResponse> => {
+  if (!process.env.PROJECT_ID_VERCEL) {
+    return { name: domain, verified: true } as unknown as CustomResponse;
+  }
   domain = domain.toLowerCase();
 
   const apexDomain = getApexDomain(`https://${domain}`);

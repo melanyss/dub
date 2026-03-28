@@ -2,6 +2,9 @@ import { prisma } from "@dub/prisma";
 import { getApexDomain } from "@dub/utils";
 
 export const removeDomainFromVercel = async (domain: string) => {
+  if (!process.env.PROJECT_ID_VERCEL) {
+    return {};
+  }
   const apexDomain = getApexDomain(`https://${domain}`);
   const domains = await prisma.domain.findMany({
     where: {

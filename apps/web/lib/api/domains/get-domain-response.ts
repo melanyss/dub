@@ -17,6 +17,9 @@ export const getVercelDomainResponse = async (domain: string) => {
 };
 
 export const getDomainResponse = async (domain: string) => {
+  if (!process.env.PROJECT_ID_VERCEL) {
+    return { verified: true };
+  }
   if (isProxiedDomain(domain)) {
     return {
       verified: true,

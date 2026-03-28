@@ -19,6 +19,7 @@ console.warn = (...args) => {
 
 /** @type {import('next').NextConfig} */
 module.exports = {
+  output: "standalone",
   reactStrictMode: false,
   transpilePackages: [
     "prettier",
@@ -132,68 +133,7 @@ module.exports = {
     ];
   },
   async redirects() {
-    return [
-      {
-        source: "/",
-        has: [
-          {
-            type: "host",
-            value: "app.dub.sh",
-          },
-        ],
-        destination: "https://app.dub.co",
-        permanent: true,
-        statusCode: 301,
-      },
-      {
-        source: "/:path*",
-        has: [
-          {
-            type: "host",
-            value: "app.dub.sh",
-          },
-        ],
-        destination: "https://app.dub.co/:path*",
-        permanent: true,
-        statusCode: 301,
-      },
-      {
-        source: "/",
-        has: [
-          {
-            type: "host",
-            value: "staging.dub.sh",
-          },
-        ],
-        destination: "https://dub.co",
-        permanent: true,
-        statusCode: 301,
-      },
-      {
-        source: "/",
-        has: [
-          {
-            type: "host",
-            value: "preview.dub.sh",
-          },
-        ],
-        destination: "https://preview.dub.co",
-        permanent: true,
-        statusCode: 301,
-      },
-      {
-        source: "/",
-        has: [
-          {
-            type: "host",
-            value: "admin.dub.sh",
-          },
-        ],
-        destination: "https://admin.dub.co",
-        permanent: true,
-        statusCode: 301,
-      },
-    ];
+    return [];
   },
   async rewrites() {
     return [

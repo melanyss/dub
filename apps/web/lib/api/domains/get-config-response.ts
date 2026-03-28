@@ -15,6 +15,9 @@ const getVercelConfigResponse = async (domain: string) => {
 };
 
 export const getConfigResponse = async (domain: string) => {
+  if (!process.env.PROJECT_ID_VERCEL) {
+    return { misconfigured: false, conflicts: [] };
+  }
   if (isProxiedDomain(domain)) {
     return {
       misconfigured: false,
